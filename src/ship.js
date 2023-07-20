@@ -21,7 +21,7 @@ const shipFactory = (name, length, coordinates) => {
     if (coordinates.length !== length) {
         throw new Error('Length and number of coordinates should be the same!')
     }
-    // if ( !2dCoordinatesUtility.checkValidLine ) { throw new Error('Coordinates must be valid set of linear 2D coordinates!')}
+    
     let hits = 0;
     let sunkStatus = false;
 
@@ -32,7 +32,7 @@ const shipFactory = (name, length, coordinates) => {
     const isHit = (hitCoordinates) => {
         // function to check if hit coordinates match current coordinates
         if ( twoDCoordinatesUtility.checkCollisionLines(hitCoordinates, coordinates) ) { 
-            hits += 1 
+            hits += 1;
         };
     };
 
