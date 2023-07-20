@@ -1,40 +1,26 @@
 // Library that provides functions for checking whether sets of 2D coordinates are valid and whether sets of coordinates collide
 // define size of the grid
-const GRID_SIZE_X = 10;
-const GRID_SIZE_Y = 10;
 
 const twoDCoordinatesUtility = (() => {
-    const checkValidPoint = (coordinates) => {
-        if (!Array.isArray(coordinates)) {
-            throw new Error("Coordinates are not an array!");
-        };
-        if (coordinates.length !== 2) {
-            throw new Error("Coordinates should have two elements!");
-        };
-        if (typeof coordinates[0] !== "number" || typeof coordinates[1] !== "number") {
-            throw new Error("Coordinates should be numbers!");
-        };
-        if (coordinates[0] >= GRID_SIZE_X || coordinates[1] >= GRID_SIZE_Y) {
-            throw new Error("Coordinates should be within the grid size!");
-        };
-        if (coordinates[0] < 0 || coordinates[1] < 0) {
-           throw new Error("Coordinates should be greater than 0!");
-        };
-        if (!Number.isInteger(coordinates[0]) || !Number.isInteger(coordinates[1])) {
-            throw new Error("Coordinates should be integer values!")
+
+    const checkCollisionPoints = (point1, point2) => {
+        if (point1[0] === point2[0] && point1[1] === point2[1]) {
+            return true;
+        } else {
+            return false;
         }
-        return true;
     };
-    const checkValidLine = () => {
-        
+
+    const checkCollisionLines = (point1, coordinates) => {
+        for (let point of coordinates) {
+            if (checkCollisionPoints(point1, point)) {
+                return true;
+            }
+        }
+        return false;
     };
-    const checkCollisionPoints = () => {
-        
-    };
-    const checkCollisionLines = () => {
-        
-    };
-    return { checkValidPoint, checkValidLine, checkCollisionPoints, checkCollisionLines, checkCollisionPoints}
+
+    return { checkCollisionPoints, checkCollisionLines }
 })()
 
-export { GRID_SIZE_X, GRID_SIZE_Y, twoDCoordinatesUtility };
+export default twoDCoordinatesUtility;

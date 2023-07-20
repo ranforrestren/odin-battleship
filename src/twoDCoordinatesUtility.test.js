@@ -1,41 +1,17 @@
-import { GRID_SIZE_X, GRID_SIZE_Y, twoDCoordinatesUtility } from './twoDCoordinatesUtility';
+import twoDCoordinatesUtility from './twoDCoordinatesUtility';
 
-test('blank argument fails checkValidPoint', () => {
-    expect( () => { twoDCoordinatesUtility.checkValidPoint() }).toThrow(Error);
+test('expect checkCollisionPoints() to be true on collision', () => {
+    expect( twoDCoordinatesUtility.checkCollisionPoints([2,3], [2,3]) ).toBe(true);
 })
 
-test('non-array argument fails checkValidPoint', () => {
-    expect( () => { twoDCoordinatesUtility.checkValidPoint("string") }).toThrow(Error);
+test('expect checkCollisionPoints() to be false on no collision', () => {
+    expect( twoDCoordinatesUtility.checkCollisionPoints([2,3], [3,3]) ).toBe(false);
 })
 
-test('empty array argument fails checkValidPoint', () => {
-    expect( () => { twoDCoordinatesUtility.checkValidPoint([]) }).toThrow(Error);
+test('expect checkCollisionLines() to be true on collision', () => {
+    expect( twoDCoordinatesUtility.checkCollisionLines([2,3], [[0,3],[1,3],[2,3]]) ).toBe(true);
 })
 
-test('array w/o length 2 argument fails checkValidPoint', () => {
-    expect( () => { twoDCoordinatesUtility.checkValidPoint([1]) }).toThrow(Error);
-})
-
-test('array w/ non-string element to fail checkValidPoint', () => {
-    expect( () => { twoDCoordinatesUtility.checkValidPoint([1, "string"]) }).toThrow(Error);
-})
-
-test('array w/ point greater than grid size X to fail checkValidPoint', () => {
-    expect( () => { twoDCoordinatesUtility.checkValidPoint([GRID_SIZE_X, 0]) }).toThrow(Error);
-})
-
-test('array w/ point greater than grid size Y to fail checkValidPoint', () => {
-    expect( () => { twoDCoordinatesUtility.checkValidPoint([0, GRID_SIZE_Y]) }).toThrow(Error);
-})
-
-test('array w/ negative points to fail checkValidPoint', () => {
-    expect( () => { twoDCoordinatesUtility.checkValidPoint([-1, -1]) }).toThrow(Error);
-})
-
-test('array w/ non-integer values to fail checkValidPoint', () => {
-    expect( () => { twoDCoordinatesUtility.checkValidPoint([3.14159, 1.61803]) }).toThrow(Error);
-})
-
-test('correct 2D array passes checkValidPoint', () => {
-    expect( twoDCoordinatesUtility.checkValidPoint([1, 1]) ).toBe(true);
+test('expect checkCollisionLines() to be false on no collision', () => {
+    expect( twoDCoordinatesUtility.checkCollisionLines([2,3], [[0,1],[0,2],[0,3]]) ).toBe(false);
 })
