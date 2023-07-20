@@ -36,6 +36,6 @@ test('does not place ship object (collision)', () => {
     expect( () => { 
         const gameboard = gameboardFactory();
         gameboard.placeShip('Destroyer', 3, [[1,0],[2,0],[3,0]]);
-        gameboard.placeShip('Submarine', 3, [[0,0],[1,0],[2,0]]);
+        gameboard.placeShip('Submarine', 3, [[1,0],[1,1],[1,2]]);
     }).toThrow(Error);
 })

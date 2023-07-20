@@ -7,7 +7,7 @@ const twoDCoordinatesUtility = (() => {
 
     // creates new X_GRID_SIZE x Y_GRID_SIZE 2D array filled with "0" elements
     const constructBoard = () => {
-        const board = new Array(X_GRID_SIZE).fill(new Array(Y_GRID_SIZE).fill(0));
+        const board = Array.from({length: X_GRID_SIZE}, () => Array(Y_GRID_SIZE).fill(0));
         return board;
     }
 

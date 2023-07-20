@@ -5,7 +5,13 @@ const gameboardFactory = () => {
     const ships = [];
 
     const placeShip = (name, length, coordinates) => {
-
+        for (let coord of coordinates) {
+            if (board[coord[0]][coord[1]] === 0) {
+                board[coord[0]][coord[1]] = 1;
+            } else {
+                throw new Error("Cannot place ship here!");
+            }
+        }
     }
     const receiveAttack = () => {
 
